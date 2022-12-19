@@ -8,11 +8,12 @@ function btnOperation() {
         console.log('Car have started');
         window.setTimeout(engine, 5000);
         console.log("we wait crash");
-    } else{
+    } else {
         console.log('Something wrong');
     }
 }
-function engine(){
+
+function engine() {
     console.log('engine crashed');
     carBtn.classList.remove('hide');
 }

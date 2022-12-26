@@ -1,3 +1,7 @@
+.car .info-panel label {
+  font-weight: bold;
+}
 .car .hide {
   display: none;
 }
+/*# sourceMappingURL=car.css.map */

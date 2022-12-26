@@ -1,39 +1,17 @@
-function btnOperation() {
-    var random = Math.random();
-    if (random > 0.5) {
-        carStarted();
-    } else {
-        carCannotBeStarted();
+(function () {
+    var garage = document.getElementById("garage");
+
+    for (var i = 0; i < 5; i++) {
+        var div = document.createElement('div');
+        var id = 'car' + i;
+        div.id = 'car' + i
+        garage.appendChild(div);
+        startCarProcess(id);
     }
-}
+    function startAllCarsListener(){
+        alert('should start all cars');
+    }
 
-function engineCrashed() {
-    devLog('engine crashed');
-    drawStatus('Engine have crashed. Car stopped');
-    startButton.classList.remove('hide');
-}
-
-function drawStatus(status) {
-    statusLabel.innerHTML = status;
-}
-
-function devLog(message) {
-    console.log(message);
-}
-
-function carStarted() {
-    drawStatus('Car have started');
-    devLog('Car have started');
-    startButton.classList.add('hide');
-    window.setTimeout(engineCrashed, 2000);
-    devLog('we wait crash')
-}
-
-function carCannotBeStarted() {
-    devLog('Something wrong');
-    drawStatus('Car can\'t be started. try again!');
-}
-
-var startButton = document.querySelector('#start-car');
-var statusLabel = document.querySelector('#status');
-startButton.addEventListener('click', btnOperation)
+    var startAllCars = document.getElementById('start-all-cars');
+    startAllCars.addEventListener('click',startAllCarsListener);
+})();

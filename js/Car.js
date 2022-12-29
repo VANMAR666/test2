@@ -1,8 +1,14 @@
 function Car(containerId) {
+    //Business Logic Layer
     this._engine = new Engine();
     this._gearBox = new GearBox();
 
-    this._render(containerId);
+    this._view = new CarView(this);
+
+    //Util logic
+    this._logger = new Logger();
+    //
+    this._view.render(containerId);
 }
 
 Car.prototype = {
@@ -17,24 +23,11 @@ Car.prototype = {
     },
     //private methods
     _carStarted: function () {
-        console.log('ok');
+        this._logger.log('ok');
     },
     _carCannotBeStarted: function () {
-        console.log('error');
-    },
-    _render: function (containerId) {
-        var container = document.getElementById(containerId);
-        container.innerHTML = `
-        <div class="car">
-            <div class="info-panel">
-                <label>status: </label> <span data-role="status">off</span>
-            </div>
-            <div class="controls">
-                <input data-role="start-car" type="button" value="Strat">
-                <hr>
-                <label>Gear box: </label> <span data-role="gear-box-value">N</span>
-            </div>
-        </div>
-        `;
+        this._logger.log('error');
+        this._view.drawStatus('Car can\'t be started. try again!');
     }
+
 };

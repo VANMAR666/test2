@@ -1,6 +1,6 @@
 (function () {
     var car1= new Car('car1');
-    car1.start();
+    //car1.start();
     // var garage = document.getElementById("garage");
     //
     // for (var i = 0; i < 5; i++) {

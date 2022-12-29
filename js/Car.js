@@ -1,9 +1,13 @@
 function Car(containerId) {
     //Business Logic Layer
+    that = this;
     this._engine = new Engine();
     this._gearBox = new GearBox();
 
-    this._view = new CarView(this);
+    this._view = new CarView();
+    this._view.addEventListener("start", function () {
+        that.start();
+    });
 
     //Util logic
     this._logger = new Logger();

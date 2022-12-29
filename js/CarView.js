@@ -1,5 +1,5 @@
-function CarView(owner) {
-    this._owner = owner;
+function CarView() {
+    this._carStartedListeners = [];
 }
 
 CarView.prototype = {
@@ -21,11 +21,11 @@ CarView.prototype = {
         this._statusLabels = document.getElementById(containerId).querySelectorAll("[data-role='status']");
         this._gearBoxValueLabels = document.getElementById(containerId).querySelectorAll("[data-role='gear-box-value']");
 
-        var that=this;
+        var that = this;
 
         this._processEls(this._startButtons, function (startButton) {
             startButton.addEventListener('click', function (ev) {
-                that._carStartListenner(ev);
+                that._carStartListener(ev);
             });
         });
     },
@@ -34,13 +34,22 @@ CarView.prototype = {
             statusLabel.innerHTML = status;
         });
     },
+    addEventListener: function (eventName, listener) {
+        if (eventName == "start") {
+            this._carStartedListeners.push(listener);
+        }
+    },
     _processEls: function (arrayOfEls, processor) {
         for (var i = 0; i < arrayOfEls.length; i++) {
             var item = arrayOfEls[i];
             processor.apply(this, [item]);
         }
     },
-    _carStartListenner: function (ev) {
-        this._owner.start();
+    _carStartListener: function (ev) {
+        for (var i = 0; i < this._carStartedListeners.length; i++) {
+            var listener = this._carStartedListeners[i];
+            listener();
+        }
+
     }
 }

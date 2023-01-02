@@ -74,7 +74,7 @@ function startCarProcess(containerId) {
             }
         }
 
-        gearBoxInterval = window.setInterval(incrementGearBoxValue, 1000)
+        gearBoxInterval = window.setInterval(incrementGearBoxValue, 1000);
 
     }
 

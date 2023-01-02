@@ -18,11 +18,14 @@ function Car(containerId) {
 Car.prototype = {
     //interface
     start: function () {
-        var random = Math.random();
-        if (random > 0.5) {
-            this._carStarted();
+        var startResult = this._engine.start();
+        if (startResult) {
+            this._view.drawStatus('Car have started');
+            this._view.onCarStarted();
+            this._gearBox.start();
         } else {
-            this._carCannotBeStarted();
+            this._logger.log('Something wrong');
+            this._view.drawStatus('Car can\'t be started. try again!');
         }
     },
     //private methods
@@ -34,4 +37,4 @@ Car.prototype = {
         this._view.drawStatus('Car can\'t be started. try again!');
     }
 
-};
+}

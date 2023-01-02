@@ -39,6 +39,11 @@ CarView.prototype = {
             this._carStartedListeners.push(listener);
         }
     },
+    onCarStarted: function () {
+        this._processEls(this._startButtons, function (startButton) {
+            startButton.disabled = true;
+        });
+    },
     _processEls: function (arrayOfEls, processor) {
         for (var i = 0; i < arrayOfEls.length; i++) {
             var item = arrayOfEls[i];
